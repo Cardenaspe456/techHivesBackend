@@ -1,28 +1,49 @@
-@techHiveBackend_HostAddress = http://localhost:5162
+@techHiveBackend_HostAddress = https://localhost:7289
+@token = PEGA_AQUI_EL_ACCESS_TOKEN
 
-GET {{techHiveBackend_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
-
-GET {{techHiveBackend_HostAddress}}/api/users
-Accept: application/json
-
-###
-POST {{techHiveBackend_HostAddress}}/api/users
+POST {{techHiveBackend_HostAddress}}/api/auth/register
 Content-Type: application/json
 
 {
   "firstName": "Ana",
   "lastName": "García",
-  "email": "ana@example.com"
+  "email": "ana@example.com",
+  "password": "Ejemplo-password-123"
+}
+
+### Iniciar sesión y copiar accessToken en la variable token
+POST {{techHiveBackend_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ana@example.com",
+  "password": "Ejemplo-password-123"
+}
+
+###
+
+GET {{techHiveBackend_HostAddress}}/api/users
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+POST {{techHiveBackend_HostAddress}}/api/users
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "firstName": "Ana",
+  "lastName": "García",
+  "email": "otro@example.com"
 }
 
 ###
 GET {{techHiveBackend_HostAddress}}/api/users/1
+Authorization: Bearer {{token}}
 
 ###
 PUT {{techHiveBackend_HostAddress}}/api/users/1
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -33,3 +54,4 @@ Content-Type: application/json
 
 ###
 DELETE {{techHiveBackend_HostAddress}}/api/users/1
+Authorization: Bearer {{token}}
