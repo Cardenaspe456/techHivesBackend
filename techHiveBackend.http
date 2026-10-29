@@ -1,0 +1,35 @@
+@techHiveBackend_HostAddress = http://localhost:5162
+
+GET {{techHiveBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{techHiveBackend_HostAddress}}/api/users
+Accept: application/json
+
+###
+POST {{techHiveBackend_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Ana",
+  "lastName": "García",
+  "email": "ana@example.com"
+}
+
+###
+GET {{techHiveBackend_HostAddress}}/api/users/1
+
+###
+PUT {{techHiveBackend_HostAddress}}/api/users/1
+Content-Type: application/json
+
+{
+  "firstName": "Ana María",
+  "lastName": "García",
+  "email": "ana@example.com"
+}
+
+###
+DELETE {{techHiveBackend_HostAddress}}/api/users/1
